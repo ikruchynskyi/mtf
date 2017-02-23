@@ -1,5 +1,5 @@
 {
-    "name": "magento/mtf",
+    "name": "ikruchynskyi/mtf",
     "type": "library",
     "description": "Magento Testing Framework",
     "keywords": ["automation", "magento", "testing"],
