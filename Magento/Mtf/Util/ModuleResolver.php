@@ -166,8 +166,12 @@ class ModuleResolver
         }
 
         $enabledModules = $this->getEnabledModules();
-        $modulePath = defined('MTF_TESTS_MODULE_PATH') ? MTF_TESTS_MODULE_PATH : MTF_TESTS_PATH;
-        $allModulePaths = glob($modulePath . '*/*');
+        $modulePaths['magento'] = defined('MTF_TESTS_MODULE_PATH') ? MTF_TESTS_MODULE_PATH : MTF_TESTS_PATH;
+        $modulePaths['vendor'] = defined('VENDOR_TESTS_MODULE_PATH') ? VENDOR_TESTS_MODULE_PATH : MTF_TESTS_PATH;
+        $allModulePaths = [];
+        foreach ($modulePaths as $modulePath) {
+            $allModulePaths = array_filter(array_merge($allModulePaths, glob($modulePath . '*/*')));
+        }
         if (empty($enabledModules)) {
             $this->enabledModulePaths = $allModulePaths;
             return $this->enabledModulePaths;
